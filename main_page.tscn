@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dp6fvus0mw3k1"]
+[gd_scene load_steps=10 format=3 uid="uid://dp6fvus0mw3k1"]
 
 [ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://capa.jpg" id="1_q3btt"]
-[ext_resource type="Texture2D" uid="uid://cn1awkcqjtk0s" path="res://assets/Ui/Level/Button/Unlocked/Default.png" id="2_5mpow"]
-[ext_resource type="Texture2D" uid="uid://bx1egidon36s6" path="res://assets/Ui/Level/Button/Unlocked/Hover.png" id="3_75dro"]
+[ext_resource type="Texture2D" uid="uid://cub5a1vel6je6" path="res://assets/Ui/Button/Button#1/Status=Red_Default.png" id="2_5mpow"]
+[ext_resource type="Texture2D" uid="uid://c1vp1siur01p7" path="res://assets/Ui/Button/Button#1/Status=Pressed.png" id="3_pbtym"]
+[ext_resource type="Texture2D" uid="uid://dtc5noqhrnnbt" path="res://assets/Ui/Button/Button#1/Status=Red_Hover.png" id="4_75dro"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pbtym"]
 texture = ExtResource("1_q3btt")
@@ -11,10 +12,13 @@ texture = ExtResource("1_q3btt")
 texture = ExtResource("2_5mpow")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3btt"]
-texture = ExtResource("3_75dro")
+texture = ExtResource("3_pbtym")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3b50"]
+texture = ExtResource("4_75dro")
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mpow"]
-texture = ExtResource("3_75dro")
+texture = ExtResource("4_75dro")
 
 [node name="main_page" type="Control"]
 layout_mode = 3
@@ -47,10 +51,10 @@ offset_left = 487.0
 offset_top = 261.0
 offset_right = 664.0
 offset_bottom = 312.0
-theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
-theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
+theme_override_styles/hover = SubResource("StyleBoxTexture_q3b50")
 text = "Iniciar Jogo"
 
 [node name="How_to_play" type="Button" parent="."]
@@ -59,7 +63,7 @@ offset_left = 487.0
 offset_top = 327.0
 offset_right = 661.05884
 offset_bottom = 377.0
-theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
@@ -71,7 +75,7 @@ offset_left = 487.0
 offset_top = 397.0
 offset_right = 660.0
 offset_bottom = 444.0
-theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
@@ -83,7 +87,7 @@ offset_left = 486.0
 offset_top = 469.0
 offset_right = 657.0
 offset_bottom = 516.0
-theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
