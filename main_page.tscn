@@ -1,0 +1,90 @@
+[gd_scene load_steps=8 format=3 uid="uid://dp6fvus0mw3k1"]
+
+[ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://capa.jpg" id="1_q3btt"]
+[ext_resource type="Texture2D" uid="uid://cn1awkcqjtk0s" path="res://assets/Ui/Level/Button/Unlocked/Default.png" id="2_5mpow"]
+[ext_resource type="Texture2D" uid="uid://bx1egidon36s6" path="res://assets/Ui/Level/Button/Unlocked/Hover.png" id="3_75dro"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_pbtym"]
+texture = ExtResource("1_q3btt")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_btl6j"]
+texture = ExtResource("2_5mpow")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q3btt"]
+texture = ExtResource("3_75dro")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_5mpow"]
+texture = ExtResource("3_75dro")
+
+[node name="main_page" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_pbtym")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 412.0
+offset_top = 106.0
+offset_right = 733.0
+offset_bottom = 194.0
+theme_override_font_sizes/font_size = 64
+text = "LockDown"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 261.0
+offset_right = 664.0
+offset_bottom = 312.0
+theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
+text = "Iniciar Jogo"
+
+[node name="How_to_play" type="Button" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 327.0
+offset_right = 661.05884
+offset_bottom = 377.0
+theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
+text = "Como Jogar"
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 397.0
+offset_right = 660.0
+offset_bottom = 444.0
+theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
+text = "Créditos"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 486.0
+offset_top = 469.0
+offset_right = 657.0
+offset_bottom = 516.0
+theme_override_colors/font_pressed_color = Color(0.80784315, 0.16078432, 0.14117648, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
+theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
+text = "Sair do Jogo"
