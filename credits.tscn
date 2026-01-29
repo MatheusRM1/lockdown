@@ -1,0 +1,81 @@
+[gd_scene load_steps=10 format=3 uid="uid://ca5ywuchaix6l"]
+
+[ext_resource type="Script" uid="uid://qy4ar7u58ktp" path="res://credits.gd" id="1_credits"]
+[ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://capa.jpg" id="1_pjc1l"]
+[ext_resource type="Texture2D" uid="uid://cub5a1vel6je6" path="res://assets/Ui/Button/Button#1/Status=Red_Default.png" id="2_j6beo"]
+[ext_resource type="Texture2D" uid="uid://c1vp1siur01p7" path="res://assets/Ui/Button/Button#1/Status=Pressed.png" id="3_4av4j"]
+[ext_resource type="Texture2D" uid="uid://dtc5noqhrnnbt" path="res://assets/Ui/Button/Button#1/Status=Red_Hover.png" id="4_5em78"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_h30m1"]
+texture = ExtResource("1_pjc1l")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_3mii5"]
+texture = ExtResource("2_j6beo")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_r4875"]
+texture = ExtResource("3_4av4j")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_g735x"]
+texture = ExtResource("4_5em78")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_credits")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxTexture_h30m1")
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_left = 36.0
+offset_top = 21.0
+offset_right = 1125.0
+offset_bottom = 551.0
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 54.0
+offset_right = 1091.0
+offset_bottom = 206.0
+theme_override_font_sizes/font_size = 20
+text = "Este projeto consiste em um jogo de terror de sobrevivência inspirado na tensão de Five Nights at Freddy's.
+ A jogabilidade foca na fuga de um antagonista (Killer) em um ambiente com visibilidade reduzida. 
+O jogador dispõe apenas de uma lanterna para se orientar e deve localizar chaves específicas 
+para destrancar a saída e vencer o jogo, evitando o contato com o inimigo.
+"
+horizontal_alignment = 3
+
+[node name="back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 498.0
+offset_top = 569.0
+offset_right = 669.0
+offset_bottom = 616.0
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_3mii5")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_r4875")
+theme_override_styles/hover = SubResource("StyleBoxTexture_g735x")
+text = "Voltar"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 0
+offset_left = 59.0
+offset_top = 202.0
+offset_right = 690.0
+offset_bottom = 333.0
+theme_override_font_sizes/font_size = 20
+text = "Grupo
+- Breno Furtado Rosado — 202376003
+- João Vitor Nicácio — 202365565C
+- Matheus Ribeiro Menezes — 202375023"
+
+[connection signal="pressed" from="back" to="." method="_on_back_pressed"]

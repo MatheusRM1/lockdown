@@ -1,5 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://dp6fvus0mw3k1"]
+[gd_scene load_steps=11 format=3 uid="uid://dp6fvus0mw3k1"]
 
+[ext_resource type="Script" uid="uid://da5w6wj8h8nv7" path="res://main_page.gd" id="1_main"]
 [ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://capa.jpg" id="1_q3btt"]
 [ext_resource type="Texture2D" uid="uid://cub5a1vel6je6" path="res://assets/Ui/Button/Button#1/Status=Red_Default.png" id="2_5mpow"]
 [ext_resource type="Texture2D" uid="uid://c1vp1siur01p7" path="res://assets/Ui/Button/Button#1/Status=Pressed.png" id="3_pbtym"]
@@ -27,6 +28,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_main")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
@@ -92,3 +94,8 @@ theme_override_styles/normal = SubResource("StyleBoxTexture_btl6j")
 theme_override_styles/pressed = SubResource("StyleBoxTexture_q3btt")
 theme_override_styles/hover = SubResource("StyleBoxTexture_5mpow")
 text = "Sair do Jogo"
+
+[connection signal="pressed" from="Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="How_to_play" to="." method="_on_how_to_play_pressed"]
+[connection signal="pressed" from="Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
