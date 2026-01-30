@@ -7,13 +7,13 @@ func _ready():
 	$Exit.pressed.connect(_on_exit_pressed)
 
 func _on_play_pressed():
-	print("Iniciar jogo - adicione a cena do jogo aqui!")
+	get_tree().change_scene_to_file("res://scenes/horror_level.tscn")
 
 func _on_how_to_play_pressed():
-	get_tree().change_scene_to_file("res://how_to_play.tscn")
+	get_tree().change_scene_to_file("res://scenes/how_to_play.tscn")
 
 func _on_credits_pressed():
-	get_tree().change_scene_to_file("res://credits.tscn")
+	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func _on_exit_pressed():
 	get_tree().quit()

@@ -12,7 +12,7 @@ signal energia_critica() # Quando < 20%
 @export var energia_critica_percentual: float = 20.0
 
 # Configurações visuais da luz
-@export var intensidade_maxima: float = 2.0
+@export var intensidade_maxima: float = 10.0
 @export var intensidade_minima: float = 0.2
 @export var alcance_maximo: float = 20.0
 @export var alcance_minimo: float = 5.0

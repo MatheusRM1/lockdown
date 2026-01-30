@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://m5n5j5ob5pj6"]
+
+[ext_resource type="PackedScene" uid="uid://c3b4lxgqbgbnm" path="res://room_01.tscn" id="1_room01"]
+[ext_resource type="PackedScene" uid="uid://bkam30n6gvt2r" path="res://room_02.tscn" id="2_room02"]
+[ext_resource type="PackedScene" uid="uid://chr1tsq2g6eng" path="res://room_03.tscn" id="3_room03"]
+[ext_resource type="PackedScene" path="res://corridor.tscn" id="4_corridor"]
+[ext_resource type="PackedScene" path="res://personagem.tscn" id="5_bcdl5"]
+
+[node name="HorrorLevel" type="Node3D"]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+
+[node name="Room01" parent="." instance=ExtResource("1_room01")]
+
+[node name="Corredor01" parent="." instance=ExtResource("4_corridor")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18, 0, 0)
+
+[node name="Room02" parent="." instance=ExtResource("2_room02")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.5, 0, 0)
+
+[node name="Corredor02" parent="." instance=ExtResource("4_corridor")]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -30, 0, 19)
+
+[node name="Room03" parent="." instance=ExtResource("3_room03")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, 32.5)
+
+[node name="Personagem" parent="." instance=ExtResource("5_bcdl5")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 1, 37)

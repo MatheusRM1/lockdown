@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://dm1ab7elblryx"]
 
 [ext_resource type="Script" uid="uid://bqpvw8xk3m7yc" path="res://script/personagem.gd" id="1_m8kpf"]
-[ext_resource type="PackedScene" uid="uid://dqxm7k3p8vh2a" path="res://lanterna.tscn" id="2_lanterna"]
-[ext_resource type="PackedScene" uid="uid://cw8m5k7p3viab" path="res://hud_jogador.tscn" id="3_hud"]
+[ext_resource type="PackedScene" uid="uid://dqxm7k3p8vh2a" path="res://scenes/lanterna.tscn" id="2_lanterna"]
+[ext_resource type="PackedScene" uid="uid://cw8m5k7p3viab" path="res://scenes/hud_jogador.tscn" id="3_hud"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 height = 1.8
