@@ -280,7 +280,3 @@ func _kill_player():
 	else:
 		if debug_mode:
 			print("[Killer] target_player inválido!")
-
-func take_damage(_amount: float):
-	# Killer é invencível, mas pode adicionar lógica aqui se necessário
-	pass

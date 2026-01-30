@@ -1,11 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck5mn8qaq2x4w"]
+[gd_scene load_steps=10 format=3 uid="uid://ck5mn8qaq2x4w"]
 
-[ext_resource type="Script" path="res://script/killer.gd" id="1_killer"]
-[ext_resource type="Texture2D" uid="uid://dfkbkvyuwtb1j" path="res://assets/cenario/Horror_Wall_14-256x256.png" id="2_texture"]
+[ext_resource type="Script" uid="uid://bdsrw7sx7owxy" path="res://script/killer.gd" id="1_killer"]
+[ext_resource type="Texture2D" uid="uid://b4600hfubxwu" path="res://assets/cenario/Horror_Wall_14-256x256.png" id="2_texture"]
+[ext_resource type="PackedScene" uid="uid://ibntcogfad3u" path="res://assets/Doctor/Doctor/Doctor.fbx" id="3_ore10"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.4
-height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hcaxd"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
 albedo_color = Color(0.3, 0.1, 0.1, 1)
@@ -16,14 +18,14 @@ roughness = 0.8
 [sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
 material = SubResource("StandardMaterial3D_1")
 radius = 0.4
-height = 2.0
+
+[sub_resource type="Skin" id="Skin_u3xk2"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_detection"]
 radius = 15.0
 
 [node name="Killer" type="CharacterBody3D"]
 collision_layer = 4
-collision_mask = 1
 script = ExtResource("1_killer")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -32,22 +34,22 @@ shape = SubResource("CapsuleShape3D_1")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+visible = false
+material_override = SubResource("StandardMaterial3D_hcaxd")
 mesh = SubResource("CapsuleMesh_1")
+skin = SubResource("Skin_u3xk2")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
 path_desired_distance = 0.5
 target_desired_distance = 0.5
 path_max_distance = 3.0
 avoidance_enabled = true
-radius = 0.5
 height = 2.0
 max_speed = 3.5
 
 [node name="DetectionArea" type="Area3D" parent="."]
 collision_layer = 0
-collision_mask = 1
 monitorable = false
-monitoring = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
@@ -75,3 +77,6 @@ color = Color(1, 1, 0.5, 1)
 
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
 max_distance = 20.0
+
+[node name="Doctor" parent="." instance=ExtResource("3_ore10")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)

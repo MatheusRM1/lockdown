@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cpm4j3wjqgavs" path="res://scenes/room_03.tscn" id="3_room03"]
 [ext_resource type="PackedScene" uid="uid://dnku5oxvvu6mt" path="res://scenes/corridor.tscn" id="4_corridor"]
 [ext_resource type="PackedScene" uid="uid://dm1ab7elblryx" path="res://scenes/personagem.tscn" id="5_bcdl5"]
-[ext_resource type="PackedScene" path="res://scenes/killer.tscn" id="6_killer"]
+[ext_resource type="PackedScene" uid="uid://ck5mn8qaq2x4w" path="res://scenes/killer.tscn" id="6_killer"]
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_killer"]
 vertices = PackedVector3Array(-9.5, 0.5, -9.5, -9.5, 0.5, 9.5, 9.5, 0.5, 9.5, 9.5, 0.5, -9.5, -18.75, 0.5, -9.5, -18.75, 0.5, 9.5, -9.5, 0.5, 9.5, -9.5, 0.5, -9.5, -32.25, 0.5, -8, -32.25, 0.5, 8, -18.75, 0.5, 8, -18.75, 0.5, -8, -40.25, 0.5, -3.5, -40.25, 0.5, 3.5, -32.25, 0.5, 3.5, -32.25, 0.5, -3.5, -37, 0.5, 13.5, -37, 0.5, 24.5, -30, 0.5, 24.5, -30, 0.5, 13.5, -40.25, 0.5, 25, -40.25, 0.5, 40, -19.75, 0.5, 40, -19.75, 0.5, 25)
@@ -56,4 +56,4 @@ environment = SubResource("Environment_ambient")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -34, 2, 39)
 
 [node name="Killer" parent="." instance=ExtResource("6_killer")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 0, 30)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -37, 1, 30)
