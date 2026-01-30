@@ -36,13 +36,7 @@ func _ready() -> void:
 	# Adicionar personagem ao grupo para identificação
 	add_to_group("player")
 	
-	# Debug
-	print("========== PERSONAGEM INICIADO ==========")
-	print("  Nome: ", name)
-	print("  Grupos: ", get_groups())
-	print("  Collision Layer: ", collision_layer)
-	print("  Collision Mask: ", collision_mask)
-	print("  Posição: ", global_position)
+	# initialization
 
 func _input(event: InputEvent) -> void:
 	# Movimento do mouse para câmera
@@ -119,23 +113,49 @@ func _on_lanterna_critica() -> void:
 	if hud and hud.has_method("mostrar_alerta_critico"):
 		hud.mostrar_alerta_critico()
 
-func die() -> void:
+func die(killer: Node3D = null) -> void:
 	"""Chamado quando o jogador morre"""
-	print("========== JOGADOR MORREU ==========")
-	print("die() foi chamado pelo killer!")
-	
 	# Desabilitar controle
 	set_physics_process(false)
 	set_process_input(false)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
-	# Efeito de morte (opcional)
-	if camera:
+	# Virar para o killer
+	if killer and camera:
+		var killer_center = killer.global_position + Vector3(0, 1.0, 0)
+		
+		# Fazer o personagem olhar para o killer
+		var look_target = Vector3(killer.global_position.x, global_position.y, killer.global_position.z)
+		look_at(look_target, Vector3.UP)
+		
+		# Resetar câmera e fazer ela olhar para o centro do killer
+		camera.rotation = Vector3.ZERO
+		var cam_pos = camera.global_position
+		var dir_to_killer = (killer_center - cam_pos).normalized()
+		
+		# Calcular pitch (olhar cima/baixo) em coordenadas locais da câmera
+		var horizontal_dist = sqrt(pow(killer_center.x - cam_pos.x, 2) + pow(killer_center.z - cam_pos.z, 2))
+		var vertical_diff = killer_center.y - cam_pos.y
+		var pitch = -atan2(vertical_diff, horizontal_dist)
+		
+		# Animar a câmera olhando para o killer
 		var tween = create_tween()
-		tween.tween_property(camera, "fov", 120.0, 0.5)
+		tween.tween_property(camera, "rotation:x", pitch, 0.3)
+		await tween.finished
+		
+		# Tocar animação de ataque do killer
+		var anim = killer.get_node_or_null("PSX_BagMan/AnimationPlayer")
+		if anim:
+			anim.play("Attack")
 	
-	# Aguardar um pouco e reiniciar
-	print("Reiniciando em 2 segundos...")
-	await get_tree().create_timer(2.0).timeout
-	print("Recarregando cena...")
-	get_tree().reload_current_scene()
+	# Efeito de morte (FOV aumenta) - começar logo após câmera
+	if camera:
+		var tween_fov = create_tween()
+		tween_fov.tween_property(camera, "fov", 120.0, 0.8)
+	
+	# Aguardar pouco e reiniciar
+	await get_tree().create_timer(1.5).timeout
+	
+	# Verificar se ainda está na árvore antes de reiniciar
+	if is_inside_tree():
+		get_tree().reload_current_scene()

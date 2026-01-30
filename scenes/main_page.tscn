@@ -1,7 +1,7 @@
 [gd_scene load_steps=11 format=3 uid="uid://dp6fvus0mw3k1"]
 
-[ext_resource type="Script" uid="uid://da5w6wj8h8nv7" path="res://main_page.gd" id="1_main"]
-[ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://capa.jpg" id="1_q3btt"]
+[ext_resource type="Script" uid="uid://da5w6wj8h8nv7" path="res://script/main_page.gd" id="1_main"]
+[ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://assets/capa.jpg" id="1_q3btt"]
 [ext_resource type="Texture2D" uid="uid://cub5a1vel6je6" path="res://assets/Ui/Button/Button#1/Status=Red_Default.png" id="2_5mpow"]
 [ext_resource type="Texture2D" uid="uid://c1vp1siur01p7" path="res://assets/Ui/Button/Button#1/Status=Pressed.png" id="3_pbtym"]
 [ext_resource type="Texture2D" uid="uid://dtc5noqhrnnbt" path="res://assets/Ui/Button/Button#1/Status=Red_Hover.png" id="4_75dro"]

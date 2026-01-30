@@ -15,13 +15,13 @@ enum State {
 @export var kill_range: float = 1.5
 @export var stun_duration: float = 1.0
 @export var light_sensitivity: float = 0.3
-@export var debug_mode: bool = true
-
+@export var debug_mode: bool = false
 # Referências
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var detection_area: Area3D = $DetectionArea
 @onready var vision_timer: Timer = $VisionTimer
 @onready var stun_particles: CPUParticles3D = $StunParticles
+@onready var anim_player: AnimationPlayer = $PSX_BagMan/AnimationPlayer
 
 # Estado
 var current_state: State = State.IDLE
@@ -34,10 +34,16 @@ func _ready():
 	# Conectar sinais
 	detection_area.body_entered.connect(_on_body_entered_detection)
 	detection_area.body_exited.connect(_on_body_exited_detection)
-	vision_timer.timeout.connect(_on_vision_check)
+	
+	if vision_timer:
+		vision_timer.timeout.connect(_on_vision_check)
 	
 	# Configurar navegação
 	nav_agent.velocity_computed.connect(_on_velocity_computed)
+	
+	# Iniciar animação Idle
+	if anim_player:
+		anim_player.play("Idle")
 	
 	# Aguardar o NavigationServer ficar pronto
 	call_deferred("_setup_navigation")
@@ -45,17 +51,14 @@ func _ready():
 func _setup_navigation():
 	# Aguardar NavigationServer ficar pronto
 	await get_tree().create_timer(0.5).timeout
-	if debug_mode:
-		print("[Killer] Navegação configurada")
+	# navigation ready
 	# S\u00f3 iniciar PATROL se ainda estiver IDLE
 	if current_state == State.IDLE:
 		set_state(State.PATROL)
 
 func _physics_process(delta: float):
 	# Debug periódico
-	if debug_mode and Engine.get_physics_frames() % 60 == 0:
-		var state_names = ["IDLE", "PATROL", "CHASE", "STUNNED"]
-		print("[Killer] Estado: ", state_names[current_state], " | Pos: ", global_position, " | Target player: ", target_player != null)
+	# periodic debug removed
 	
 
 	# Máquina de estados
@@ -75,13 +78,14 @@ func _physics_process(delta: float):
 func _idle_behavior(_delta: float):
 	velocity = Vector3.ZERO
 
-func _patrol_behavior(_delta: float):	# Se tem target_player, deveria estar perseguindo!
+func _patrol_behavior(_delta: float):
+	# Se tem target_player, deveria estar perseguindo!
 	if is_instance_valid(target_player):
-		if debug_mode:
-			print("[Killer] PATROL detectou target_player! Mudando para CHASE")
+		# detected target in patrol
 		set_state(State.CHASE)
 		return
-		# Patrulha simples - pode ser expandida com waypoints
+	
+	# Patrulha simples - pode ser expandida com waypoints
 	if nav_agent.is_navigation_finished():
 		# Escolher ponto aleatório próximo
 		var random_point = global_position + Vector3(
@@ -90,33 +94,26 @@ func _patrol_behavior(_delta: float):	# Se tem target_player, deveria estar pers
 			randf_range(-10, 10)
 		)
 		nav_agent.target_position = random_point
-		if debug_mode:
-			print("[Killer] Novo ponto de patrulha: ", random_point)
+		# new patrol point selected
 	
 	_move_towards_target(move_speed * 0.5)
 
 func _chase_behavior(_delta: float):
 	if not is_instance_valid(target_player):
-		if debug_mode:
-			print("[Killer] Perdeu o jogador")
+		# lost sight of player
 		set_state(State.PATROL)
 		return
 	
 	# Verificar distância para matar PRIMEIRO
 	var distance = global_position.distance_to(target_player.global_position)
-	if debug_mode and Engine.get_physics_frames() % 30 == 0:
-		print("[Killer] Distância do jogador: ", distance, "m (kill_range: ", kill_range, "m)")
+	# distance debug removed
 	
 	if distance <= kill_range:
-		if debug_mode:
-			print("[Killer] MATANDO JOGADOR!")
 		_kill_player()
 		return
 	
 	# Verificar se está sendo iluminado
 	if is_lit_by_flashlight:
-		if debug_mode:
-			print("[Killer] Iluminado! STUNNED")
 		set_state(State.STUNNED)
 		return
 	
@@ -135,8 +132,6 @@ func _stunned_behavior(_delta: float):
 	
 	# Verificar se ainda est\u00e1 iluminado
 	if not is_lit_by_flashlight:
-		if debug_mode:
-			print("[Killer] N\u00e3o est\u00e1 mais iluminado, voltando para CHASE")
 		if is_instance_valid(target_player):
 			set_state(State.CHASE)
 		else:
@@ -160,18 +155,8 @@ func _look_at_target(target_pos: Vector3):
 	look_at(look_pos, Vector3.UP)
 
 func _on_body_entered_detection(body: Node3D):
-	print("[Killer] *** BODY ENTROU NA AREA *** ")
-	print("  Nome: ", body.name)
-	print("  Tipo: ", body.get_class())
-	print("  Grupos: ", body.get_groups())
-	print("  É player? ", body.is_in_group("player"))
-	print("  Posição killer: ", global_position)
-	print("  Posição body: ", body.global_position)
-	print("  Distância: ", global_position.distance_to(body.global_position))
-	
 	if body.is_in_group("player"):
 		target_player = body
-		print("[Killer] !!! JOGADOR DETECTADO !!! Entrando em CHASE")
 		if current_state != State.STUNNED:
 			set_state(State.CHASE)
 
@@ -216,8 +201,7 @@ func check_flashlight_exposure():
 		var result = space_state.intersect_ray(query)
 		
 		if result and result.collider == self:
-			if debug_mode and not is_lit_by_flashlight:
-				print("[Killer] ILUMINADO pela lanterna! angle=", angle, " dist=", distance)
+			is_lit_by_flashlight = true
 			is_lit_by_flashlight = true
 			if current_state == State.CHASE:
 				set_state(State.STUNNED)
@@ -241,42 +225,43 @@ func _find_flashlight(player: Node3D) -> SpotLight3D:
 func set_state(new_state: State):
 	if current_state == new_state:
 		return
-	
-	if debug_mode:
-		var state_names = ["IDLE", "PATROL", "CHASE", "STUNNED"]
-		print("[Killer] Mudando estado: ", state_names[current_state], " -> ", state_names[new_state])
-	
+
 	# Sair do estado anterior
 	match current_state:
 		State.STUNNED:
 			stun_particles.emitting = false
-	
+
 	current_state = new_state
-	
-	# Entrar no novo estado
+
+	# Entrar no novo estado e tocar animação
 	match new_state:
 		State.IDLE:
-			pass
+			if anim_player:
+				anim_player.play("Idle")
 		State.PATROL:
 			nav_agent.max_speed = move_speed * 0.5
+			if anim_player:
+				anim_player.play("Walk")
 		State.CHASE:
 			nav_agent.max_speed = chase_speed
+			if anim_player:
+				anim_player.play("Run")
 		State.STUNNED:
 			stun_particles.emitting = true
 			velocity = Vector3.ZERO
+			if anim_player:
+				anim_player.play("Idle")
 
 func _kill_player():
-	if debug_mode:
-		print("[Killer] _kill_player chamado!")
-	if is_instance_valid(target_player):
-		if target_player.has_method("die"):
-			if debug_mode:
-				print("[Killer] Chamando die() do jogador")
-			target_player.die()
+		# Parar de se mover
+		velocity = Vector3.ZERO
+
+		if is_instance_valid(target_player):
+			if target_player.has_method("die"):
+				target_player.die(self)
+			else:
+				get_tree().reload_current_scene()
 		else:
-			if debug_mode:
-				print("[Killer] Jogador sem método die(), recarregando cena")
-			get_tree().reload_current_scene()
-	else:
-		if debug_mode:
-			print("[Killer] target_player inválido!")
+			# target invalid
+			pass
+		# target_player invalid

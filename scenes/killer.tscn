@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bdsrw7sx7owxy" path="res://script/killer.gd" id="1_killer"]
 [ext_resource type="Texture2D" uid="uid://b4600hfubxwu" path="res://assets/cenario/Horror_Wall_14-256x256.png" id="2_texture"]
-[ext_resource type="PackedScene" uid="uid://ibntcogfad3u" path="res://assets/Doctor/Doctor/Doctor.fbx" id="3_ore10"]
+[ext_resource type="PackedScene" uid="uid://hrpnqptcucfx" path="res://assets/killer/GLB/PSX_BagMan.glb" id="3_ore10"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 radius = 0.4
@@ -49,6 +49,7 @@ max_speed = 3.5
 
 [node name="DetectionArea" type="Area3D" parent="."]
 collision_layer = 0
+collision_mask = 1
 monitorable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
@@ -75,8 +76,35 @@ scale_amount_min = 0.1
 scale_amount_max = 0.2
 color = Color(1, 1, 0.5, 1)
 
-[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
-max_distance = 20.0
+[node name="PSX_BagMan" parent="." instance=ExtResource("3_ore10")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 0, 0)
 
-[node name="Doctor" parent="." instance=ExtResource("3_ore10")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 1, 0)
+[node name="Skeleton3D" parent="PSX_BagMan/Armature" index="0"]
+bones/0/position = Vector3(0.123568244, 0.100331515, -0.0069708903)
+bones/0/rotation = Quaternion(0.0011041922, 0.5610409, 0.827787, 0.0007483778)
+bones/2/rotation = Quaternion(0, 0.99999624, 0, -0.0027386667)
+bones/3/position = Vector3(0.0003048207, -0.8384017, -0.49567878)
+bones/3/rotation = Quaternion(0.99999624, -1.323503e-23, 0.0027386665, 3.357562e-26)
+bones/5/position = Vector3(1.1102251e-16, -7.118325e-08, 3.0367683e-08)
+bones/5/rotation = Quaternion(0.76209974, 7.718321e-08, 9.084937e-08, 0.6474596)
+bones/6/rotation = Quaternion(-0.12580858, -1.477586e-14, -2.9995107e-08, 0.9920545)
+bones/7/rotation = Quaternion(0.10380657, -2.2553353e-16, 2.4749419e-08, 0.9945975)
+bones/9/rotation = Quaternion(0.14826053, -0.018378837, -0.03780282, 0.98805463)
+bones/10/rotation = Quaternion(-0.001001756, 6.6633206e-06, -0.007987284, 0.9999677)
+bones/11/rotation = Quaternion(0.0020465541, 4.577871e-05, -0.013428122, 0.99990773)
+bones/13/rotation = Quaternion(0.14826049, 0.018378818, 0.037802834, 0.9880547)
+bones/14/rotation = Quaternion(-0.0010017261, -6.6610005e-06, 0.007987281, 0.9999677)
+bones/15/rotation = Quaternion(0.0020465546, -4.5779092e-05, 0.013428119, 0.99990773)
+bones/17/rotation = Quaternion(0.60995215, -0.33388475, 0.61574215, -0.37059557)
+bones/18/rotation = Quaternion(-0.032102253, -0.0002694482, -0.034418758, 0.99889183)
+bones/20/rotation = Quaternion(-0.6099489, -0.33387896, 0.61574507, 0.37060124)
+bones/21/rotation = Quaternion(-0.032119554, 0.00026880502, 0.034418773, 0.9988912)
+bones/23/position = Vector3(-0.0003048207, -0.8384017, -0.49567878)
+bones/23/rotation = Quaternion(0.99999624, -1.323503e-23, -0.0027386665, -3.357562e-26)
+bones/24/position = Vector3(-0.12356815, 0.100331634, -0.0069707157)
+bones/24/rotation = Quaternion(-0.0011041922, 0.5610409, 0.827787, -0.0007483778)
+
+[node name="HAND_L" parent="PSX_BagMan/Armature/Skeleton3D" index="0"]
+transform = Transform3D(-0.042818855, 0.99908316, 3.1199306e-08, -0.9990827, -0.042818807, -1.5910337e-07, -1.0729127e-07, -1.2619421e-07, 0.99999994, 0.82999057, 1.6714275, 0.00022180623)
+
+[editable path="PSX_BagMan"]
