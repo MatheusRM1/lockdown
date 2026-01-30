@@ -1,0 +1,77 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck5mn8qaq2x4w"]
+
+[ext_resource type="Script" path="res://script/killer.gd" id="1_killer"]
+[ext_resource type="Texture2D" uid="uid://dfkbkvyuwtb1j" path="res://assets/cenario/Horror_Wall_14-256x256.png" id="2_texture"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
+radius = 0.4
+height = 2.0
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1"]
+albedo_color = Color(0.3, 0.1, 0.1, 1)
+albedo_texture = ExtResource("2_texture")
+metallic = 0.2
+roughness = 0.8
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_1"]
+material = SubResource("StandardMaterial3D_1")
+radius = 0.4
+height = 2.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_detection"]
+radius = 15.0
+
+[node name="Killer" type="CharacterBody3D"]
+collision_layer = 4
+collision_mask = 1
+script = ExtResource("1_killer")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+mesh = SubResource("CapsuleMesh_1")
+
+[node name="NavigationAgent3D" type="NavigationAgent3D" parent="."]
+path_desired_distance = 0.5
+target_desired_distance = 0.5
+path_max_distance = 3.0
+avoidance_enabled = true
+radius = 0.5
+height = 2.0
+max_speed = 3.5
+
+[node name="DetectionArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+monitoring = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DetectionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("SphereShape3D_detection")
+
+[node name="VisionTimer" type="Timer" parent="."]
+wait_time = 0.2
+autostart = true
+
+[node name="StunParticles" type="CPUParticles3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+emitting = false
+amount = 20
+lifetime = 0.5
+explosiveness = 0.8
+emission_shape = 1
+emission_sphere_radius = 0.3
+direction = Vector3(0, 1, 0)
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 1.0
+initial_velocity_max = 2.0
+scale_amount_min = 0.1
+scale_amount_max = 0.2
+color = Color(1, 1, 0.5, 1)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+max_distance = 20.0

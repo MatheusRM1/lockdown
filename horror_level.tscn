@@ -1,8 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://m5n5j5ob5pj6"]
+[gd_scene load_steps=6 format=3 uid="uid://dcw2nkg71vvt"]
 
-[ext_resource type="PackedScene" uid="uid://c3b4lxgqbgbnm" path="res://room_01.tscn" id="1_room01"]
-[ext_resource type="PackedScene" uid="uid://bkam30n6gvt2r" path="res://room_02.tscn" id="2_room02"]
-[ext_resource type="PackedScene" uid="uid://chr1tsq2g6eng" path="res://room_03.tscn" id="3_room03"]
+[ext_resource type="PackedScene" uid="uid://brp171px4sila" path="res://room_01.tscn" id="1_room01"]
+[ext_resource type="PackedScene" uid="uid://x5nyaor0ylfb" path="res://room_02.tscn" id="2_room02"]
+[ext_resource type="PackedScene" uid="uid://cmyxw73a3q6y3" path="res://room_03.tscn" id="3_room03"]
 [ext_resource type="PackedScene" path="res://corridor.tscn" id="4_corridor"]
 [ext_resource type="PackedScene" path="res://personagem.tscn" id="5_bcdl5"]
 

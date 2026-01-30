@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://c27y3q7p5paan"]
+[gd_scene load_steps=4 format=3 uid="uid://bua7duqpvqrn0"]
 
 [ext_resource type="Script" path="res://script/hud_jogador.gd" id="1_hud"]
 [ext_resource type="Texture2D" uid="uid://0kmr6qhnsd67" path="res://assets/Ui/Slider/Rectangle/Progress_Bar=Rectangle_full_v1.png" id="2_barra_full"]

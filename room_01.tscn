@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c3b4lxgqbgbnm"]
+[gd_scene load_steps=9 format=3 uid="uid://brp171px4sila"]
 
 [ext_resource type="Texture2D" uid="uid://b4600hfubxwu" path="res://assets/cenario/Horror_Wall_14-256x256.png" id="1_wall"]
 [ext_resource type="Texture2D" uid="uid://eq37cpvaj2u2" path="res://assets/cenario/Horror_Floor_12-256x256.png" id="2_floor"]

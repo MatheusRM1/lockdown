@@ -35,6 +35,14 @@ func _ready() -> void:
 	
 	# Adicionar personagem ao grupo para identificação
 	add_to_group("player")
+	
+	# Debug
+	print("========== PERSONAGEM INICIADO ==========")
+	print("  Nome: ", name)
+	print("  Grupos: ", get_groups())
+	print("  Collision Layer: ", collision_layer)
+	print("  Collision Mask: ", collision_mask)
+	print("  Posição: ", global_position)
 
 func _input(event: InputEvent) -> void:
 	# Movimento do mouse para câmera
@@ -110,3 +118,24 @@ func _on_lanterna_critica() -> void:
 	# Mostrar alerta no HUD
 	if hud and hud.has_method("mostrar_alerta_critico"):
 		hud.mostrar_alerta_critico()
+
+func die() -> void:
+	"""Chamado quando o jogador morre"""
+	print("========== JOGADOR MORREU ==========")
+	print("die() foi chamado pelo killer!")
+	
+	# Desabilitar controle
+	set_physics_process(false)
+	set_process_input(false)
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	# Efeito de morte (opcional)
+	if camera:
+		var tween = create_tween()
+		tween.tween_property(camera, "fov", 120.0, 0.5)
+	
+	# Aguardar um pouco e reiniciar
+	print("Reiniciando em 2 segundos...")
+	await get_tree().create_timer(2.0).timeout
+	print("Recarregando cena...")
+	get_tree().reload_current_scene()

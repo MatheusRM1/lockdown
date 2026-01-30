@@ -7,7 +7,9 @@
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 height = 1.8
 
-[node name="Personagem" type="CharacterBody3D"]
+[node name="Personagem" type="CharacterBody3D" groups=["player"]]
+collision_layer = 1
+collision_mask = 5
 script = ExtResource("1_m8kpf")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
