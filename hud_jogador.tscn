@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw8m5k7p3viab"]
+
+[ext_resource type="Script" uid="uid://b4m7rxn6k8wpr" path="res://script/hud_jogador.gd" id="1_hud"]
+[ext_resource type="Texture2D" uid="uid://0kmr6qhnsd67" path="res://assets/Ui/Slider/Rectangle/Progress_Bar=Rectangle_full_v1.png" id="2_barra_full"]
+[ext_resource type="Texture2D" uid="uid://bprahqc00phyn" path="res://assets/Ui/Slider/Rectangle/Progress_Bar=Rectangle_empty_v1.png" id="3_barra_empty"]
+
+[node name="HUD_Jogador" type="CanvasLayer"]
+script = ExtResource("1_hud")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 735.0
+offset_bottom = 120.0
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="Control"]
+layout_mode = 0
+offset_right = 722.0
+offset_bottom = 122.0
+texture_under = ExtResource("3_barra_empty")
+texture_progress = ExtResource("2_barra_full")
