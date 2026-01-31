@@ -8,29 +8,17 @@ var chave_coletada: bool = false
 const CHAVE_SCENE = "res://scenes/key.tscn"
 
 func _ready() -> void:
-	# Aguarda a cena carregar completamente
-	await get_tree().create_timer(1.0).timeout
-	spawnar_chave_aleatoria()
+	# Não faz nada aqui - será chamado pela cena principal
+	pass
 
 func spawnar_chave_aleatoria() -> void:
-	# Busca a cena principal
-	var root = get_tree().current_scene
-	if not root:
-		push_error("Cena principal não encontrada!")
+	# Busca o Chest1 na árvore de nós
+	bau_com_chave = get_tree().root.find_child("Chest1", true, false)
+	
+	if not bau_com_chave:
+		push_error("Chest1 não foi encontrado na cena!")
 		return
 	
-	# Busca todos os baús na cena (nós que começam com "Chest")
-	var baus: Array[Node] = []
-	for child in root.get_children():
-		if child.name.begins_with("Chest"):
-			baus.append(child)
-	
-	if baus.is_empty():
-		push_error("Nenhum baú foi encontrado na cena!")
-		return
-	
-	# Escolhe um baú aleatório
-	bau_com_chave = baus.pick_random()
 	print("Chave vai spawnar no baú: ", bau_com_chave.name)
 	
 	# Carrega e instancia a chave

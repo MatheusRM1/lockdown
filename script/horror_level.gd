@@ -9,6 +9,11 @@ func _ready():
 	if has_node("/root/PilhaManager"):
 		PilhaManager.iniciar_spawns(self )
 		print("PilhaManager iniciado")
+	
+	# Spawnar a chave no Chest1
+	if has_node("/root/ChaveManager"):
+		ChaveManager.spawnar_chave_aleatoria()
+		print("ChaveManager iniciado")
 		
 	# Iniciar Som
 	$AudioStreamPlayer3D.stream.loop = true
