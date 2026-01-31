@@ -9,3 +9,7 @@ func _ready():
 	if has_node("/root/PilhaManager"):
 		PilhaManager.iniciar_spawns(self )
 		print("PilhaManager iniciado")
+		
+	# Iniciar Som
+	$AudioStreamPlayer3D.stream.loop = true
+	$AudioStreamPlayer3D.stream.loop_offset = 0.5

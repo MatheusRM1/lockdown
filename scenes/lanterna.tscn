@@ -1,18 +1,33 @@
-[gd_scene load_steps=3 format=3 uid="uid://dqxm7k3p8vh2a"]
+[gd_scene format=3 uid="uid://dqxm7k3p8vh2a"]
 
 [ext_resource type="Script" uid="uid://c5m8pxk4oawqr" path="res://script/lanterna.gd" id="1_lanterna"]
+[ext_resource type="AudioStream" uid="uid://ds6c7happ5dgg" path="res://assets/sounds/flicking.wav" id="3_hkrnk"]
 [ext_resource type="PackedScene" uid="uid://nj5lxtw15kpn" path="res://scenes/sm_flashlight_hi.tscn" id="3_jre8u"]
+[ext_resource type="AudioStream" uid="uid://dc8oayl0rwnu7" path="res://assets/sounds/lantern_dies.wav" id="4_00p8i"]
+[ext_resource type="AudioStream" uid="uid://1s3r87yat2i1" path="res://assets/sounds/start_fliking.wav" id="5_lnk0n"]
 
-[node name="Lanterna" type="Node3D"]
+[node name="Lanterna" type="Node3D" unique_id=434915366]
 script = ExtResource("1_lanterna")
 
-[node name="SpotLight3D" type="SpotLight3D" parent="."]
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1877441043]
 light_energy = 2.0
 spot_range = 20.0
 spot_angle_attenuation = 2.0
 
-[node name="Modelo" type="Node3D" parent="."]
+[node name="Modelo" type="Node3D" parent="." unique_id=1916322024]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
-[node name="SM_Flashlight_hi2" parent="Modelo" instance=ExtResource("3_jre8u")]
+[node name="SM_Flashlight_hi2" parent="Modelo" unique_id=1401460795 instance=ExtResource("3_jre8u")]
 transform = Transform3D(-2.0837781, 0.88607544, 11.784426, 0, 11.966221, -0.89974463, -11.817692, -0.15623903, -2.0779126, -4, 0, 8)
+
+[node name="Flicking" type="AudioStreamPlayer3D" parent="." unique_id=1564739611]
+stream = ExtResource("3_hkrnk")
+volume_db = -15.0
+
+[node name="Dying" type="AudioStreamPlayer3D" parent="." unique_id=1561050014]
+stream = ExtResource("4_00p8i")
+volume_db = -15.0
+
+[node name="StartFlicking" type="AudioStreamPlayer3D" parent="." unique_id=1741746588]
+stream = ExtResource("5_lnk0n")
+volume_db = -15.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://w6lu5mms411a"]
+[gd_scene load_steps=16 format=3 uid="uid://w6lu5mms411a"]
 
 [ext_resource type="PackedScene" uid="uid://bk773w5lbvtad" path="res://scenes/entry_hall.tscn" id="1_room01"]
 [ext_resource type="Shader" uid="uid://cyklafxhkva0e" path="res://scenes/filtro.gdshader" id="1_tdieo"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://deeyondg41hfi" path="res://scenes/low_poly_chest_[2_0]_fbx.tscn" id="10_5bw45"]
 [ext_resource type="Script" uid="uid://c2v1nelt7ur71" path="res://script/horror_level.gd" id="11_level"]
 [ext_resource type="Script" uid="uid://bacsvqi3jkqtf" path="res://script/pilha_spawn_point.gd" id="12_spawn"]
+[ext_resource type="AudioStream" uid="uid://ctx27ybimk7dk" path="res://assets/sounds/ambient.ogg" id="12_trvm7"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_bfqsu"]
 shader = ExtResource("1_tdieo")
@@ -161,3 +162,8 @@ transform = Transform3D(-0.015270876, 0, 0.9998839, 0, 1, 0, -0.9998839, 0, -0.0
 
 [node name="Chest19" parent="." instance=ExtResource("10_5bw45")]
 transform = Transform3D(0.99998504, 0, 0.0055501126, 0, 1, 0, -0.0055501126, 0, 0.99998504, -55.290432, 0.8041935, -35.37187)
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="."]
+stream = ExtResource("12_trvm7")
+volume_db = -20.0
+autoplay = true
