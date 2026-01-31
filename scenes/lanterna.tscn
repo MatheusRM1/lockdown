@@ -7,14 +7,12 @@
 script = ExtResource("1_lanterna")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="."]
-light_color = Color(1, 1, 1, 1)
 light_energy = 2.0
 spot_range = 20.0
-spot_angle = 45.0
 spot_angle_attenuation = 2.0
 
 [node name="Modelo" type="Node3D" parent="."]
 transform = Transform3D(0.05, 0, 0, 0, 0.05, 0, 0, 0, 0.05, 0, 0, 0)
 
 [node name="SM_Flashlight_hi2" parent="Modelo" instance=ExtResource("3_jre8u")]
-transform = Transform3D(-0.77438724, 0.8978693, 11.941278, 0, 11.966221, -0.8997447, -11.974987, -0.058062572, -0.77220744, 0, 0, 7.8)
+transform = Transform3D(-2.0837781, 0.88607544, 11.784426, 0, 11.966221, -0.89974463, -11.817692, -0.15623903, -2.0779126, -4, 0, 8)
