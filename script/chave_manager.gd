@@ -20,7 +20,7 @@ func spawnar_chave_aleatoria() -> void:
 		return
 	
 	# Busca todos os baús na cena (nós que começam com "Chest")
-	var baus: Array[Node3D] = []
+	var baus: Array[Node] = []
 	for child in root.get_children():
 		if child.name.begins_with("Chest"):
 			baus.append(child)

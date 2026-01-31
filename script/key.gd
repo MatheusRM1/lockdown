@@ -29,7 +29,7 @@ func _on_body_entered(body: Node3D) -> void:
 	if body.name == "Personagem" or body.is_in_group("player"):
 		coletar_chave(body)
 
-func coletar_chave(personagem: Node3D) -> void:
+func coletar_chave(_personagem: Node3D) -> void:
 	if foi_coletada:
 		return
 	
