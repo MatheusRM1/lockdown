@@ -14,7 +14,7 @@ func _on_how_to_play_pressed():
 
 func _on_credits_pressed():
 	if GameState:
-		GameState.set_previous_scene("res://main_page.tscn")
+		GameState.set_previous_scene("res://scenes/main_page.tscn")
 	get_tree().change_scene_to_file("res://scenes/credits.tscn")
 
 func _on_exit_pressed():
