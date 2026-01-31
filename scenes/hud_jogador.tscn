@@ -23,3 +23,24 @@ rotation = -1.5707964
 scale = Vector2(0.4, 0.4)
 texture_under = ExtResource("3_barra_empty")
 texture_progress = ExtResource("2_barra_full")
+
+[node name="MensagemChave" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -280.0
+offset_top = 10.0
+offset_right = -10.0
+offset_bottom = 50.0
+grow_horizontal = 0
+theme_override_colors/font_color = Color(1, 0.85, 0, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 18
+text = "Você pegou a chave, fuja!"
+horizontal_alignment = 2
+vertical_alignment = 1

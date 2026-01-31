@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 GameState="*res://script/game_state.gd"
 PilhaManager="*res://script/pilha_manager.gd"
+ChaveManager="*res://script/chave_manager.gd"
 
 [filesystem]
 
