@@ -1,31 +1,36 @@
-[gd_scene load_steps=5 format=3 uid="uid://dm1ab7elblryx"]
+[gd_scene format=3 uid="uid://dm1ab7elblryx"]
 
 [ext_resource type="Script" uid="uid://bqpvw8xk3m7yc" path="res://script/personagem.gd" id="1_m8kpf"]
 [ext_resource type="PackedScene" uid="uid://dqxm7k3p8vh2a" path="res://scenes/lanterna.tscn" id="2_lanterna"]
 [ext_resource type="PackedScene" uid="uid://cw8m5k7p3viab" path="res://scenes/hud_jogador.tscn" id="3_hud"]
+[ext_resource type="AudioStream" uid="uid://ccp5in58rv5v" path="res://assets/sounds/foot-steps.wav" id="4_en60c"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_1"]
 height = 1.8
 
-[node name="Personagem" type="CharacterBody3D" groups=["player"]]
-collision_layer = 1
+[node name="Personagem" type="CharacterBody3D" unique_id=1879812049 groups=["player"]]
 collision_mask = 5
 script = ExtResource("1_m8kpf")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=359508036]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 shape = SubResource("CapsuleShape3D_1")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1945596597]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 current = true
 fov = 90.0
 
-[node name="Lanterna" parent="Camera3D" instance=ExtResource("2_lanterna")]
+[node name="Lanterna" parent="Camera3D" unique_id=843983434 instance=ExtResource("2_lanterna")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, -0.3, -0.5)
 
-[node name="RayCast3D" type="RayCast3D" parent="Camera3D"]
+[node name="RayCast3D" type="RayCast3D" parent="Camera3D" unique_id=366252452]
 target_position = Vector3(0, 0, -2)
 collision_mask = 3
 
-[node name="HUD_Jogador" parent="." instance=ExtResource("3_hud")]
+[node name="HUD_Jogador" parent="." unique_id=135385420 instance=ExtResource("3_hud")]
+
+[node name="Foot Steps" type="AudioStreamPlayer3D" parent="." unique_id=897322122]
+stream = ExtResource("4_en60c")
+volume_db = -25.0
+max_distance = 15.0

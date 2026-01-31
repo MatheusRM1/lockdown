@@ -16,6 +16,7 @@ enum State {
 @export var stun_duration: float = 1.0
 @export var light_sensitivity: float = 0.3
 @export var debug_mode: bool = false
+
 # Referências
 @onready var nav_agent: NavigationAgent3D = $NavigationAgent3D
 @onready var detection_area: Area3D = $DetectionArea
@@ -23,12 +24,17 @@ enum State {
 @onready var stun_particles: CPUParticles3D = $StunParticles
 @onready var anim_player: AnimationPlayer = $PSX_BagMan/AnimationPlayer
 
+# Constantes para tempo de som
+const WALK_STEP_TIME: float = 0.5
+const RUN_STEP_TIME: float = 0.3
+
 # Estado
 var current_state: State = State.IDLE
 var target_player: Node3D = null
 var stun_timer: float = 0.0
 var is_lit_by_flashlight: bool = false
 var last_known_player_pos: Vector3 = Vector3.ZERO
+var step_timer: float = 0.0
 
 func _ready():
 	# Conectar sinais
@@ -79,6 +85,7 @@ func _physics_process(delta: float):
 	move_and_slide()
 
 func _idle_behavior(_delta: float):
+	step_timer = 0
 	velocity = Vector3.ZERO
 
 func _patrol_behavior(_delta: float):
@@ -98,7 +105,11 @@ func _patrol_behavior(_delta: float):
 		)
 		nav_agent.target_position = random_point
 		# new patrol point selected
-	
+	step_timer -= _delta
+	if step_timer <= 0 :
+		$FootSteps.play()
+		step_timer = WALK_STEP_TIME
+		
 	_move_towards_target(move_speed * 0.5)
 
 func _chase_behavior(_delta: float):
@@ -124,6 +135,11 @@ func _chase_behavior(_delta: float):
 	last_known_player_pos = target_player.global_position
 	
 	# Perseguir
+	step_timer -= _delta
+	if step_timer <= 0 :
+		$FootSteps.play()
+		step_timer = RUN_STEP_TIME
+		
 	nav_agent.target_position = target_player.global_position
 	_move_towards_target(chase_speed)
 	
@@ -132,6 +148,7 @@ func _chase_behavior(_delta: float):
 
 func _stunned_behavior(_delta: float):
 	velocity = Vector3.ZERO
+	step_timer = 0
 	
 	# Verificar se ainda est\u00e1 iluminado
 	if not is_lit_by_flashlight:
@@ -272,3 +289,12 @@ func _kill_player():
 			# target invalid
 			pass
 		# target_player invalid
+
+func kill_player() :
+	var anim = get_node_or_null("PSX_BagMan/AnimationPlayer")
+	if anim:
+		anim.play("Attack")
+
+func play_attack_sound():
+	$AttackSound.pitch_scale = randf_range(0.95, 1.05)
+	$AttackSound.play()

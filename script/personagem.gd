@@ -19,9 +19,15 @@ extends CharacterBody3D
 @onready var lanterna: Node3D = $Camera3D/Lanterna
 @onready var hud: CanvasLayer = $HUD_Jogador
 
+# Constantes para tempo de som
+const WALK_STEP_TIME: float = 0.5
+const RUN_STEP_TIME: float = 0.3
+
 # Variáveis de controle
 var rotacao_camera: float = 0.0
 var pode_pular: bool = true
+var step_timer: float = 0.0
+
 
 func _ready() -> void:
 	# Captura o mouse
@@ -54,6 +60,9 @@ func _input(event: InputEvent) -> void:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _physics_process(delta: float) -> void:
+	# Variavel de suporte para som de passos
+	var is_running = false
+	
 	# Aplicar gravidade
 	if not is_on_floor():
 		velocity.y -= gravidade * delta
@@ -71,13 +80,19 @@ func _physics_process(delta: float) -> void:
 	# Determinar velocidade alvo (shift para correr)
 	var velocidade_alvo: float = velocidade_caminhada
 	if Input.is_action_pressed("ui_shift"):
+		is_running = true
 		velocidade_alvo = velocidade_corrida
 	
 	# Aplicar movimento com aceleração/desaceleração
 	if direcao != Vector3.ZERO:
 		velocity.x = lerp(velocity.x, direcao.x * velocidade_alvo, aceleracao * delta)
 		velocity.z = lerp(velocity.z, direcao.z * velocidade_alvo, aceleracao * delta)
+		step_timer -= delta
+		if step_timer <= 0 :
+			$"Foot Steps".play()
+			step_timer = RUN_STEP_TIME if is_running else WALK_STEP_TIME
 	else:
+		step_timer = 0
 		velocity.x = lerp(velocity.x, 0.0, desaceleracao * delta)
 		velocity.z = lerp(velocity.z, 0.0, desaceleracao * delta)
 	
@@ -120,6 +135,9 @@ func die(killer: Node3D = null) -> void:
 	set_process_input(false)
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	# Apagar Lanterna
+	lanterna.consumir_energia(lanterna.energia_maxima)
+	
 	# Virar para o killer
 	if killer and camera:
 		var killer_center = killer.global_position + Vector3(0, 1.0, 0)
@@ -144,9 +162,7 @@ func die(killer: Node3D = null) -> void:
 		await tween.finished
 		
 		# Tocar animação de ataque do killer
-		var anim = killer.get_node_or_null("PSX_BagMan/AnimationPlayer")
-		if anim:
-			anim.play("Attack")
+		killer.kill_player()
 	
 	# Efeito de morte (FOV aumenta) - começar logo após câmera
 	if camera:
