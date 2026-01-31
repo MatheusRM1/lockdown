@@ -45,7 +45,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06663895, 0.014875412, -0.
 navigation_mesh = SubResource("NavigationMesh_killer")
 
 [node name="EntryHall" parent="NavigationRegion3D" instance=ExtResource("1_room01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24179459, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.24161744, 0.0031769276, 0.00020647049)
 
 [node name="Corridor01" parent="NavigationRegion3D" instance=ExtResource("5_corridor")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.996619, 0, 0)
@@ -115,7 +115,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.969149, 0.7478852, -7.703
 transform = Transform3D(-0.99984246, 0, -0.017749006, 0, 1, 0, 0.017749006, 0, -0.99984246, 0, 0.7478852, 7.8224525)
 
 [node name="Chest3" parent="." instance=ExtResource("10_5bw45")]
-transform = Transform3D(-0.99984246, 0, -0.017749006, 0, 1, 0, 0.017749006, 0, -0.99984246, -12.459816, 0.7478852, 1.770072)
+transform = Transform3D(-0.99984246, 0, -0.017749006, 0, 1, 0, 0.017749006, 0, -0.99984246, -12.459816, 0.7478852, 1.7426071)
 
 [node name="Chest5" parent="." instance=ExtResource("10_5bw45")]
 transform = Transform3D(-0.9991473, 0, -0.041299988, 0, 1, 0, 0.041299988, 0, -0.9991473, -29.038076, 0.8041935, 7.490212)

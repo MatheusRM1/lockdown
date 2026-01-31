@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cub5a1vel6je6" path="res://assets/Ui/Button/Button#1/Status=Red_Default.png" id="2_4amj7"]
 [ext_resource type="Texture2D" uid="uid://c1vp1siur01p7" path="res://assets/Ui/Button/Button#1/Status=Pressed.png" id="3_h3nuw"]
 [ext_resource type="Texture2D" uid="uid://dtc5noqhrnnbt" path="res://assets/Ui/Button/Button#1/Status=Red_Hover.png" id="4_jppxx"]
-[ext_resource type="Texture2D" uid="uid://gpwirv3fqlmy" path="res://assets/victory.png" id="5_2goxq"]
+[ext_resource type="Texture2D" uid="uid://gpwirv3fqlmy" path="res://assets/key/victory.png" id="5_2goxq"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mt7g"]
 bg_color = Color(0, 0, 0, 1)

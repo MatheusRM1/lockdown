@@ -22,6 +22,17 @@ func _ready():
 	# Mostrar cursor
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	
+	# Verificar resultado do jogo via GameState
+	var game_result_str = GameState.get_meta("game_result", "defeat")
+	if game_result_str == "victory":
+		result = GameResult.VICTORY
+	else:
+		result = GameResult.DEFEAT
+	
+	# Limpar o resultado
+	GameState.set_meta("game_result", "defeat")
+	GameState.set_meta("killer_pausado", false)
+	
 	# Mostrar resultado correto
 	if result == GameResult.DEFEAT:
 		defeat_texture.visible = true

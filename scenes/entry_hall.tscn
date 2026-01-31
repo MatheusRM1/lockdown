@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bk773w5lbvtad"]
+[gd_scene load_steps=10 format=3 uid="uid://bk773w5lbvtad"]
 
 [ext_resource type="Texture2D" uid="uid://b4600hfubxwu" path="res://assets/cenario/Horror_Wall_14-256x256.png" id="1_wall"]
 [ext_resource type="Texture2D" uid="uid://eq37cpvaj2u2" path="res://assets/cenario/Horror_Floor_12-256x256.png" id="2_floor"]
 [ext_resource type="Texture2D" uid="uid://1hpkn3dr03ys" path="res://assets/cenario/Horror_Misc_05-256x256.png" id="2_x7sae"]
+[ext_resource type="PackedScene" uid="uid://cls61iu0c4bjv" path="res://scenes/door.tscn" id="4_door"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_1"]
 
@@ -90,8 +91,35 @@ mesh = SubResource("BoxMesh_1")
 [node name="DoorToCorridorMarker" type="Marker3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9, 0, 0)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(0.5, 0, 0, 0, 5, 0, 0, 0, 18, 8.793215, 2.5933695, -0.09125781)
+[node name="WallEastTop" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 1.75, 0, 0, 0, 18, 9, 4.125, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEastTop"]
+shape = SubResource("BoxShape3D_1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallEastTop"]
 material_override = SubResource("StandardMaterial3D_1")
 mesh = SubResource("BoxMesh_1")
-skeleton = NodePath("../WallWest2/MeshInstance3D")
+
+[node name="WallEastLeft" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 4, 0, 0, 0, 8.1, 9, 2, -4.8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEastLeft"]
+shape = SubResource("BoxShape3D_1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallEastLeft"]
+material_override = SubResource("StandardMaterial3D_1")
+mesh = SubResource("BoxMesh_1")
+
+[node name="WallEastRight" type="StaticBody3D" parent="."]
+transform = Transform3D(0.5, 0, 0, 0, 4, 0, 0, 0, 8.1, 9, 2, 4.8)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEastRight"]
+shape = SubResource("BoxShape3D_1")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallEastRight"]
+material_override = SubResource("StandardMaterial3D_1")
+mesh = SubResource("BoxMesh_1")
+
+[node name="ExitDoor" parent="." instance=ExtResource("4_door")]
+transform = Transform3D(0.007854039, 0, -1.1999744, 0, 1.2, 0, 1.1999744, 0, 0.007854039, 8.788851, 0.24989903, -0.117182255)

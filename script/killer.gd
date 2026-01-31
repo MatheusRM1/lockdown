@@ -57,10 +57,13 @@ func _setup_navigation():
 		set_state(State.PATROL)
 
 func _physics_process(delta: float):
-	# Debug periódico
-	# periodic debug removed
+	# Verificar se está pausado (porta abrindo)
+	if GameState.get_meta("killer_pausado", false):
+		velocity = Vector3.ZERO
+		if anim_player and anim_player.current_animation != "Idle":
+			anim_player.play("Idle")
+		return
 	
-
 	# Máquina de estados
 	match current_state:
 		State.IDLE:
@@ -183,7 +186,7 @@ func check_flashlight_exposure():
 	
 	# Verificar se a luz está apontando para o killer
 	var to_killer = (global_position - flashlight.global_position).normalized()
-	var flashlight_forward = -flashlight.global_transform.basis.z
+	var flashlight_forward = - flashlight.global_transform.basis.z
 	
 	var angle = to_killer.dot(flashlight_forward)
 	var distance = global_position.distance_to(flashlight.global_position)
@@ -253,12 +256,16 @@ func set_state(new_state: State):
 				anim_player.play("Idle")
 
 func _kill_player():
+		# Não pode matar se a porta está abrindo
+		if GameState.get_meta("killer_pausado", false):
+			return
+		
 		# Parar de se mover
 		velocity = Vector3.ZERO
 
 		if is_instance_valid(target_player):
 			if target_player.has_method("die"):
-				target_player.die(self)
+				target_player.die(self )
 			else:
 				get_tree().reload_current_scene()
 		else:

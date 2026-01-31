@@ -10,7 +10,7 @@ size = Vector3(1.5, 2.5, 0.2)
 script = ExtResource("1_script")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4764113, 0)
+transform = Transform3D(-0.99999964, 0, -0.00083771534, 0, 1, 0, 0.00083771534, 0, -0.99999964, 0, 1.4764113, 0)
 mesh = ExtResource("2_mesh")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
@@ -20,15 +20,15 @@ shape = SubResource("BoxShape_door")
 [node name="InteractionArea" type="Area3D" parent="."]
 collision_layer = 0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.25, 0.5)
-shape = SubResource("BoxShape_door")
-
 [node name="Label3D" type="Label3D" parent="InteractionArea"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.12106621, 2.3956661, 0.40960717)
 billboard = 1
-text = "Precisa de uma chave"
+text = "Aperte E para abrir a porta"
 outline_size = 8
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 9, 0, 1.25, 0.9046256)
+shape = SubResource("BoxShape_door")
 
 [connection signal="body_entered" from="InteractionArea" to="." method="_on_interaction_area_entered"]
 [connection signal="body_exited" from="InteractionArea" to="." method="_on_interaction_area_exited"]
