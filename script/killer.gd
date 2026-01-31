@@ -10,8 +10,8 @@ enum State {
 
 # Configurações
 @export var move_speed: float = 3.5
-@export var chase_speed: float = 4.5
-@export var detection_range: float = 15.0
+@export var chase_speed: float = 9
+@export var detection_range: float = 55.0
 @export var kill_range: float = 1.5
 @export var stun_duration: float = 1.0
 @export var light_sensitivity: float = 0.3
