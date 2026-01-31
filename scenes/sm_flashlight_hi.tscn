@@ -1,0 +1,18 @@
+[gd_scene load_steps=6 format=3 uid="uid://nj5lxtw15kpn"]
+
+[ext_resource type="PackedScene" uid="uid://c50kcra2ynl52" path="res://assets/Flashlight/SM_Flashlight_hi.fbx" id="1_ajqg4"]
+[ext_resource type="Texture2D" uid="uid://do8ykdl3x707q" path="res://assets/Flashlight/Textures/Basic/T_PandaLight_BaseColor.tga" id="2_s5v6t"]
+[ext_resource type="Texture2D" uid="uid://od481umfomdl" path="res://assets/Flashlight/Textures/Basic/T_PandaLight_Normal.tga" id="3_22283"]
+[ext_resource type="Texture2D" uid="uid://8neaot8ybebe" path="res://assets/Flashlight/Textures/Basic/T_PandaLight_ARM.tga" id="3_wshbs"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s5v6t"]
+albedo_texture = ExtResource("2_s5v6t")
+normal_enabled = true
+normal_texture = ExtResource("3_22283")
+ao_enabled = true
+ao_texture = ExtResource("3_wshbs")
+
+[node name="SM_Flashlight_hi" instance=ExtResource("1_ajqg4")]
+
+[node name="Flashlight_HP" parent="." index="0"]
+material_override = SubResource("StandardMaterial3D_s5v6t")
