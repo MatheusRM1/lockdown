@@ -1,11 +1,5 @@
 extends Control
 
-func _ready():
-	$Play.pressed.connect(_on_play_pressed)
-	$How_to_play.pressed.connect(_on_how_to_play_pressed)
-	$Credits.pressed.connect(_on_credits_pressed)
-	$Exit.pressed.connect(_on_exit_pressed)
-
 func _on_play_pressed():
 	get_tree().change_scene_to_file("res://scenes/horror_level.tscn")
 

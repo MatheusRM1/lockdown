@@ -1,0 +1,11 @@
+extends Node3D
+
+func _ready():
+	# Aguardar um frame para os spawn points se registrarem
+	await get_tree().process_frame
+	await get_tree().process_frame
+	
+	# Iniciar spawn de pilhas
+	if has_node("/root/PilhaManager"):
+		PilhaManager.iniciar_spawns(self )
+		print("PilhaManager iniciado")
