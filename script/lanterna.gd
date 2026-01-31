@@ -23,6 +23,10 @@ var ja_alertou_critico: bool = false
 
 # Referências
 @onready var luz: SpotLight3D = $SpotLight3D
+@onready var flicking_sound = $Flicking
+@onready var start_flicking_sound = $StartFlicking
+@onready var dying_sound = $Dying
+
 
 func _ready() -> void:
 	energia_atual = energia_maxima
@@ -61,6 +65,11 @@ func recarregar_energia(quantidade: float) -> void:
 	# Reativar lanterna se estava desativada
 	if not esta_ativa and energia_atual > 0:
 		ativar_lanterna()
+	
+	# Para sons:
+	start_flicking_sound.stop()
+	flicking_sound.stop()
+	dying_sound.stop()
 
 func atualizar_intensidade_luz() -> void:
 	"""Atualiza intensidade e alcance da luz baseado na energia"""
@@ -81,15 +90,22 @@ func atualizar_intensidade_luz() -> void:
 		luz.light_color = Color(1.0, 0.95, 0.8, 1.0) # Branca
 	
 	# Efeito de piscar quando muito baixa
-	if percentual < 0.1 and percentual > 0:
+	if percentual < 0.15 and percentual > 0:
 		var flicker: float = randf_range(0.5, 1.0)
 		luz.light_energy *= flicker
+		start_flicking()
 
 func desativar_lanterna() -> void:
 	"""Desativa a lanterna quando energia acaba"""
 	esta_ativa = false
 	luz.visible = false
 	emit_signal("energia_esgotada")
+	
+	start_flicking_sound.stop()
+	flicking_sound.stop()
+	
+	dying_sound.play()
+	
 
 func ativar_lanterna() -> void:
 	"""Ativa a lanterna"""
@@ -99,3 +115,20 @@ func ativar_lanterna() -> void:
 func obter_percentual_energia() -> float:
 	"""Retorna o percentual de energia (0-100)"""
 	return (energia_atual / energia_maxima) * 100.0
+	
+func start_flicking():
+	# Evita spam
+	if start_flicking_sound.is_playing() or flicking_sound.is_playing():
+		return
+
+	# Toca o som de início
+	start_flicking_sound.play()
+
+	# Quando terminar, começa o loop
+	start_flicking_sound.finished.connect(
+		func():
+			# Só toca se ainda houver energia
+			if energia_atual > 0 and esta_ativa:
+				flicking_sound.play(),
+		CONNECT_ONE_SHOT
+	)
