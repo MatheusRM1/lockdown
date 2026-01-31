@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://deeyondg41hfi"]
+[gd_scene load_steps=8 format=3 uid="uid://deeyondg41hfi"]
 
 [ext_resource type="PackedScene" uid="uid://eycojd4jqwde" path="res://assets/Low_Poly_Chest [2.0]/Low_Poly_Chest [2.0] FBX.fbx" id="1_bk7iq"]
+[ext_resource type="Script" uid="uid://cjt2a2a8e8sp2" path="res://script/chest.gd" id="1_script"]
 [ext_resource type="Texture2D" uid="uid://w7vftj218f60" path="res://assets/Low_Poly_Chest [2.0]/Low_Poly_Chest [2_Chest_Color.png" id="2_0ixd8"]
 [ext_resource type="Texture2D" uid="uid://dalbpspf4jlq4" path="res://assets/Low_Poly_Chest [2.0]/Low_Poly_Chest [2.0] Textures/Low_Poly_Chest [2.0] Color.png" id="3_55g3g"]
 
@@ -10,7 +11,11 @@ albedo_texture = ExtResource("2_0ixd8")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5lqgy"]
 albedo_texture = ExtResource("3_55g3g")
 
+[sub_resource type="SphereShape3D" id="SphereShape3D_interaction"]
+radius = 2.0
+
 [node name="Low_Poly_Chest [2_0] FBX" instance=ExtResource("1_bk7iq")]
+script = ExtResource("1_script")
 
 [node name="Chest_Bottom" parent="Armature/Skeleton3D" index="0"]
 transform = Transform3D(1, 0, 0, 0, -1.1920928e-07, -0.9999999, 0, 0.9999999, -1.1920928e-07, 0, 0, 0)
@@ -25,3 +30,16 @@ bone_idx = 1
 
 [node name="Chest_Top" parent="Armature/Skeleton3D/Chest_Top" index="0"]
 material_override = SubResource("StandardMaterial3D_5lqgy")
+
+[node name="InteractionArea" type="Area3D" parent="." index="1"]
+collision_layer = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea" index="0"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+shape = SubResource("SphereShape3D_interaction")
+
+[node name="Label3D" type="Label3D" parent="InteractionArea" index="1"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
+billboard = 1
+text = "Aperte E para abrir"
+outline_size = 8
