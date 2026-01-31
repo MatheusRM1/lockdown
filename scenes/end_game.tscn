@@ -1,0 +1,90 @@
+[gd_scene load_steps=12 format=3 uid="uid://bbtaenjgqhla2"]
+
+[ext_resource type="Script" path="res://script/end_game.gd" id="1_script"]
+[ext_resource type="Texture2D" uid="uid://cb1lv2qss1820" path="res://assets/Ui/defeat.png" id="1_semjh"]
+[ext_resource type="Texture2D" uid="uid://cub5a1vel6je6" path="res://assets/Ui/Button/Button#1/Status=Red_Default.png" id="2_4amj7"]
+[ext_resource type="Texture2D" uid="uid://c1vp1siur01p7" path="res://assets/Ui/Button/Button#1/Status=Pressed.png" id="3_h3nuw"]
+[ext_resource type="Texture2D" uid="uid://dtc5noqhrnnbt" path="res://assets/Ui/Button/Button#1/Status=Red_Hover.png" id="4_jppxx"]
+[ext_resource type="Texture2D" uid="uid://gpwirv3fqlmy" path="res://assets/victory.png" id="5_2goxq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5mt7g"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_mao43"]
+texture = ExtResource("2_4amj7")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_b8sqn"]
+texture = ExtResource("3_h3nuw")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_57ipk"]
+texture = ExtResource("4_jppxx")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_bx16a"]
+texture = ExtResource("4_jppxx")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_script")
+
+[node name="PanelContainer" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_5mt7g")
+
+[node name="Defeat" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 87.0
+offset_right = 1108.0
+offset_bottom = 318.0
+texture = ExtResource("1_semjh")
+
+[node name="Victory" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 83.0
+offset_right = 1100.0
+offset_bottom = 320.0
+texture = ExtResource("5_2goxq")
+
+[node name="Back" type="Button" parent="."]
+layout_mode = 0
+offset_left = 214.0
+offset_top = 486.0
+offset_right = 391.0
+offset_bottom = 537.0
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_mao43")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b8sqn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_57ipk")
+text = "Voltar"
+
+[node name="Credits" type="Button" parent="."]
+layout_mode = 0
+offset_left = 511.0
+offset_top = 487.0
+offset_right = 686.0
+offset_bottom = 537.0
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_mao43")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b8sqn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bx16a")
+text = "Créditos"
+
+[node name="Exit" type="Button" parent="."]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 488.0
+offset_right = 975.0
+offset_bottom = 536.0
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_styles/normal = SubResource("StyleBoxTexture_mao43")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_b8sqn")
+theme_override_styles/hover = SubResource("StyleBoxTexture_bx16a")
+text = "Sair do Jogo"

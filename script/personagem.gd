@@ -153,9 +153,9 @@ func die(killer: Node3D = null) -> void:
 		var tween_fov = create_tween()
 		tween_fov.tween_property(camera, "fov", 120.0, 0.8)
 	
-	# Aguardar pouco e reiniciar
+	# Aguardar um pouco e ir para tela de game over
 	await get_tree().create_timer(1.5).timeout
 	
-	# Verificar se ainda está na árvore antes de reiniciar
+	# Verificar se ainda está na árvore antes de trocar cena
 	if is_inside_tree():
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://scenes/end_game.tscn")

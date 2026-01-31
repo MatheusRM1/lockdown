@@ -1,7 +1,7 @@
 [gd_scene load_steps=10 format=3 uid="uid://cdl12v7w0w58"]
 
-[ext_resource type="Script" uid="uid://c5clfwrj871tw" path="res://how_to_play.gd" id="1_how"]
-[ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://capa.jpg" id="1_pg7y5"]
+[ext_resource type="Script" uid="uid://c5clfwrj871tw" path="res://script/how_to_play.gd" id="1_how"]
+[ext_resource type="Texture2D" uid="uid://bjsjbdhpb1vpq" path="res://assets/capa.jpg" id="1_pg7y5"]
 [ext_resource type="Texture2D" uid="uid://cub5a1vel6je6" path="res://assets/Ui/Button/Button#1/Status=Red_Default.png" id="2_3hqcg"]
 [ext_resource type="Texture2D" uid="uid://c1vp1siur01p7" path="res://assets/Ui/Button/Button#1/Status=Pressed.png" id="3_kjb65"]
 [ext_resource type="Texture2D" uid="uid://dtc5noqhrnnbt" path="res://assets/Ui/Button/Button#1/Status=Red_Hover.png" id="4_n7wbn"]
@@ -42,12 +42,21 @@ offset_bottom = 551.0
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 0
-offset_left = 450.0
-offset_top = 188.0
-offset_right = 687.0
-offset_bottom = 216.0
+offset_left = 79.0
+offset_top = 57.0
+offset_right = 1002.0
+offset_bottom = 553.0
 theme_override_font_sizes/font_size = 20
-text = "Descrição de como jogar"
+text = "Controles
+WASD: Andar
+ESPAÇO: Pular
+
+Objetivo: Encontre os Keycards espalhados para abrir a porta e escapar.
+
+Sobrevivência
+Lanterna: A bateria acaba. Pegue Pilhas para não ficar no escuro.
+Killer: Ele só se move quando não é observado. Aponte a lanterna para ele para paralisá-lo. 
+Se você desviar o olhar, ele ataca e é fatal!"
 
 [node name="back" type="Button" parent="."]
 layout_mode = 0
