@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://chave_key_scene"]
+
+[ext_resource type="PackedScene" path="res://assets/key/key.fbx" id="1_key"]
+[ext_resource type="Script" path="res://script/key.gd" id="2_script"]
+
+[node name="Key" instance=ExtResource("1_key")]
+script = ExtResource("2_script")
+
+[node name="Area3D" type="Area3D" parent="."]
+collision_layer = 4
+collision_mask = 1
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Area3D"]
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+light_color = Color(1.0, 0.9, 0.2, 1.0)
+light_energy = 4.0
+omni_range = 5.0
+
+[connection signal="body_entered" from="Area3D" to="." method="_on_body_entered"]
