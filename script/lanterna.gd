@@ -8,7 +8,7 @@ signal energia_critica() # Quando < 20%
 # Configurações de Energia
 @export var energia_maxima: float = 100.0
 @export var energia_atual: float = 100.0
-@export var taxa_consumo: float = 5.0  # Energia consumida por segundo
+@export var taxa_consumo: float = 5.0 # Energia consumida por segundo
 @export var energia_critica_percentual: float = 20.0
 
 # Configurações visuais da luz
@@ -74,11 +74,11 @@ func atualizar_intensidade_luz() -> void:
 	
 	# Ajustar cor baseado na energia (amarelada quando baixa)
 	if percentual < 0.3:
-		luz.light_color = Color(1.0, 0.8, 0.5, 1.0)  # Amarelada
+		luz.light_color = Color(1.0, 0.8, 0.5, 1.0) # Amarelada
 	elif percentual < 0.6:
-		luz.light_color = Color(1.0, 0.9, 0.7, 1.0)  # Meio termo
+		luz.light_color = Color(1.0, 0.9, 0.7, 1.0) # Meio termo
 	else:
-		luz.light_color = Color(1.0, 0.95, 0.8, 1.0)  # Branca
+		luz.light_color = Color(1.0, 0.95, 0.8, 1.0) # Branca
 	
 	# Efeito de piscar quando muito baixa
 	if percentual < 0.1 and percentual > 0:
